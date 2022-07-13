@@ -5,6 +5,8 @@ import numpy as np
 params = {
     'input_file': 'CASP',
     'input_path': 'C:/Users/02485398/Documents/cokonemliproje/data/',
-    'param_alpha': np.logspace(-4,1,50),
-    'model': Lasso(tol=0.001)
+    'n_job': 1,
+    'num_cluster': 6,
+    'param_alpha': [0, 0.05, 0.5, 1, 2],
+    'model': Lasso()
 }

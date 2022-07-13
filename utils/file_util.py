@@ -1,4 +1,7 @@
 import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
 import os.path
 
 import utils.config as config
@@ -65,8 +68,18 @@ def data_spliter(X_train, X_test, y_train, y_test, train_labels, test_labels, in
     """
     train_index = np.where(train_labels == index)
     test_index = np.where(test_labels == index)
-    X_train_loc = X_train[train_index]
-    y_train_loc = y_train[train_index]
-    X_test_loc = X_test[test_index]
-    y_test_loc = y_test[test_index]
+    X_train_loc = X_train.iloc[train_index]
+    y_train_loc = y_train.iloc[train_index]
+    X_test_loc = X_test.iloc[test_index]
+    y_test_loc = y_test.iloc[test_index]
     return X_train_loc, X_test_loc, y_train_loc, y_test_loc
+
+
+def scaler(X_train,X_test):
+    """
+    #datayı scale eder
+    """
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+    return X_train, X_test
